@@ -1,11 +1,22 @@
 package com.example.schoolManagement.service;
 
 import com.example.schoolManagement.DTO.StaffDTO;
-import com.example.schoolManagement.DTO.request.StaffUpdateDTO;
+import com.example.schoolManagement.Repo.StaffRepo;
+import com.example.schoolManagement.entity.Staff;
+import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-public interface StaffService {
+@Service
+public class StaffService {
+    @Autowired
+    private StaffRepo staffRepo;
 
-    String saveStaff(StaffDTO staffDTO);
+    @Autowired
+    private ModelMapper modelMapper;
 
-    void updateStaff(StaffUpdateDTO staffUpdateDTO);
+    public StaffDTO saveStaff(StaffDTO staffDTO){
+        staffRepo.save(modelMapper.map(staffDTO, Staff.class));
+        return staffDTO;
+    }
 }

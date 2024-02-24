@@ -1,12 +1,17 @@
 package com.example.schoolManagement.service;
 
+import com.example.schoolManagement.DTO.StudentDTO;
 import com.example.schoolManagement.DTO.TeacherDTO;
 import com.example.schoolManagement.Repo.TeacherRepo;
+import com.example.schoolManagement.entity.Student;
 import com.example.schoolManagement.entity.Teacher;
 import jakarta.transaction.Transactional;
 import org.modelmapper.ModelMapper;
+import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 @Transactional
@@ -21,5 +26,9 @@ public class TeacherService {
 
         teacherRepo.save(modelMapper.map(teacherDTO, Teacher.class));
                 return teacherDTO;
+    }
+    public List<TeacherDTO> getAllTeacher(){
+        List<Teacher>teacherList=teacherRepo.findAll();
+        return modelMapper.map(teacherList,new TypeToken<List<TeacherDTO>>(){}.getType());
     }
 }

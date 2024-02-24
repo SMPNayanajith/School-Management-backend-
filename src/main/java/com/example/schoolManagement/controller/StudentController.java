@@ -1,25 +1,40 @@
 package com.example.schoolManagement.controller;
+import com.example.schoolManagement.DTO.StudentDTO;
+import com.example.schoolManagement.DTO.TeacherDTO;
 import com.example.schoolManagement.Repo.StudentRepo;
 import com.example.schoolManagement.entity.Student;
+import com.example.schoolManagement.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
+@RequestMapping("api/v1/student")
 @CrossOrigin("http://localhost:3000")
 
 public class StudentController {
     @Autowired
-    private StudentRepo StudentRepo;
+    private StudentService studentService;
 
-    @PostMapping("/student")
-    Student newStudent (@RequestBody Student newStudent){
-        return StudentRepo.save(newStudent);
+    @GetMapping("get")
+    public List<StudentDTO> getStudent(){
+        return studentService.getAllStudent();
     }
-    @GetMapping("/students")
-    List <Student> getAllStudent(){
-        return StudentRepo.findAll();
+
+    @PostMapping("post")
+    public StudentDTO saveStudent(@RequestBody StudentDTO studentDTO){
+        return studentService.saveStudent(studentDTO);
     }
+
+    @PutMapping("put")
+    public String putUser(){
+        return "success put";
+    }
+    @DeleteMapping("delete")
+    public String deleteUser(){
+        return "success delete";
+    }
+
 
 }

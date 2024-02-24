@@ -1,29 +1,26 @@
 package com.example.schoolManagement.controller;
 
-import com.example.schoolManagement.Repo.TeacherRepo;
-import com.example.schoolManagement.entity.Teacher;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.annotation.CreatedBy;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 @RestController
-@CrossOrigin("http://localhost:3000")
+@RequestMapping("api/v1/teacher")
+@CrossOrigin
 public class TeacherController {
-
-    @Autowired
-    private TeacherRepo TeacherRepo;
-
-    @PostMapping("/teacher")
-    Teacher newTeacher (@RequestBody Teacher newTeacher){
-        return TeacherRepo.save(newTeacher);
+    @GetMapping("get")
+    public String getUser(){
+        return "success";
     }
-
-    @GetMapping("/teachers")
-    List <Teacher> getAllTeacher(){
-        return TeacherRepo.findAll();
+    @PostMapping("post")
+    public String postUser(){
+        return "success post";
     }
-
-
-
+    @PutMapping("put")
+    public String putUser(){
+        return "success put";
+    }
+    @DeleteMapping("delete")
+    public String deleteUser(){
+        return "success delete";
+    }
 }

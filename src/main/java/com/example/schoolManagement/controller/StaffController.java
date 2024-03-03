@@ -25,8 +25,10 @@ public class StaffController {
     }
 
     @PutMapping("put")
-    public String putUser(){
-        return "success put";
+    public StaffDTO updateStaff(@RequestBody StaffDTO staffDTO){
+        return staffService.updateStaff(staffDTO);
+
+
     }
     @DeleteMapping("delete")
     public String deleteUser(){

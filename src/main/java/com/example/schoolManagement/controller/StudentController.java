@@ -28,8 +28,9 @@ public class StudentController {
     }
 
     @PutMapping("put")
-    public String putUser(){
-        return "success put";
+    public StudentDTO updateStudent(@RequestBody StudentDTO studentDTO){
+
+        return studentService.updateStudent(studentDTO);
     }
     @DeleteMapping("delete")
     public String deleteUser(){

@@ -26,4 +26,8 @@ public class StaffService {
         List<Staff>staffList=staffRepo.findAll();
         return modelMapper.map(staffList,new TypeToken<List<StaffDTO>>(){}.getType());
     }
+    public StaffDTO updateStaff(StaffDTO staffDTO) {
+        staffRepo.save(modelMapper.map(staffDTO, Staff.class));
+        return staffDTO;
+    }
 }

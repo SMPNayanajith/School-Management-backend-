@@ -25,8 +25,8 @@ public class TeacherController {
     }
 
     @PutMapping("put")
-    public String putUser(){
-        return "success put";
+    public TeacherDTO updateTeacher(TeacherDTO teacherDTO){
+        return teacherService.updateTeacher(teacherDTO);
     }
     @DeleteMapping("delete")
     public String deleteUser(){

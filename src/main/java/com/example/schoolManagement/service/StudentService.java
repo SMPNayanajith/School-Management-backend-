@@ -33,4 +33,11 @@ public class StudentService {
         List<Student>studentList=studentRepo.findAll();
         return modelMapper.map(studentList,new TypeToken<List<StudentDTO>>(){}.getType());
     }
+
+    public StudentDTO updateStudent(StudentDTO studentDTO){
+
+        studentRepo.save(modelMapper.map(studentDTO, Student.class));
+        return studentDTO;
+
+    }
 }

@@ -31,4 +31,10 @@ public class TeacherService {
         List<Teacher>teacherList=teacherRepo.findAll();
         return modelMapper.map(teacherList,new TypeToken<List<TeacherDTO>>(){}.getType());
     }
+
+    public TeacherDTO updateTeacher(TeacherDTO teacherDTO){
+
+        teacherRepo.save(modelMapper.map(teacherDTO, Teacher.class));
+        return teacherDTO;
+    }
 }

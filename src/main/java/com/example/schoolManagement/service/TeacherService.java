@@ -10,6 +10,7 @@ import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 
@@ -37,4 +38,11 @@ public class TeacherService {
         teacherRepo.save(modelMapper.map(teacherDTO, Teacher.class));
         return teacherDTO;
     }
+
+    public boolean deleteTeacher(@PathVariable Long id){
+        teacherRepo.deleteById(id);
+        return true;
+
+    }
 }
+

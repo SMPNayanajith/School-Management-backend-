@@ -7,6 +7,7 @@ import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 
@@ -18,10 +19,10 @@ public class StaffService {
     @Autowired
     private ModelMapper modelMapper;
 
-    public StaffDTO saveStaff(StaffDTO staffDTO){
-        staffRepo.save(modelMapper.map(staffDTO, Staff.class));
-        return staffDTO;
-    }
+        public StaffDTO saveStaff(StaffDTO staffDTO){
+            staffRepo.save(modelMapper.map(staffDTO, Staff.class));
+            return staffDTO;
+        }
     public List<StaffDTO> getAllStaff(){
         List<Staff>staffList=staffRepo.findAll();
         return modelMapper.map(staffList,new TypeToken<List<StaffDTO>>(){}.getType());
@@ -30,4 +31,12 @@ public class StaffService {
         staffRepo.save(modelMapper.map(staffDTO, Staff.class));
         return staffDTO;
     }
+
+
+
+    public boolean deleteStaff(@PathVariable Long id){
+        staffRepo.deleteById(id);
+        return true; // Or handle the return value as needed
+    }
+
 }

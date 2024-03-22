@@ -28,8 +28,8 @@ public class TeacherController {
     public TeacherDTO updateTeacher(TeacherDTO teacherDTO){
         return teacherService.updateTeacher(teacherDTO);
     }
-    @DeleteMapping("delete")
-    public String deleteUser(){
-        return "success delete";
+    @DeleteMapping("delete/{id}")
+    public boolean deleteTeacher(@PathVariable Long id){
+        return teacherService.deleteTeacher(id);
     }
 }

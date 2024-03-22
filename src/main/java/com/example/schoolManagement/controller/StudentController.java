@@ -32,9 +32,9 @@ public class StudentController {
 
         return studentService.updateStudent(studentDTO);
     }
-    @DeleteMapping("delete")
-    public String deleteUser(){
-        return "success delete";
+    @DeleteMapping("delete/{id}")
+    public boolean deleteStudent(@PathVariable Long id){
+        return studentService.deleteStudent(id);
     }
 
 
